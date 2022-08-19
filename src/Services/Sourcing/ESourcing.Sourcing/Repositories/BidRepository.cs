@@ -42,7 +42,7 @@ namespace ESourcing.Sourcing.Repositories
             return bids.OrderByDescending(b => b.Price).FirstOrDefault();
         }
 
-        public async Task SendBid(Bid bid)
+        public async Task SendBid(Bid bid) //İhale süresi boyunca verilen teklifleri veritabanına kaydeder.
         {
            await _context.Bids.InsertOneAsync(bid);
         }
