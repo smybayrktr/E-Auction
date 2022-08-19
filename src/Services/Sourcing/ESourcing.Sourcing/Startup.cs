@@ -1,5 +1,7 @@
 using ESourcing.Sourcing.Data;
 using ESourcing.Sourcing.Data.Interface;
+using ESourcing.Sourcing.Repositories;
+using ESourcing.Sourcing.Repositories.Interface;
 using ESourcing.Sourcing.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +35,7 @@ namespace ESourcing.Sourcing
             services.Configure<SourcingDatabaseSettings>(Configuration.GetSection(nameof(SourcingDatabaseSettings)));
             services.AddSingleton<ISourcingDatabaseSettings>(sp => sp.GetRequiredService<IOptions<SourcingDatabaseSettings>>().Value);
             services.AddTransient<ISourcingContext, SourcingContext>();
+            services.AddTransient<IAuctionRepository, AuctionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
