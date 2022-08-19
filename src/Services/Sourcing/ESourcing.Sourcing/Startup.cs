@@ -1,3 +1,5 @@
+using ESourcing.Sourcing.Data;
+using ESourcing.Sourcing.Data.Interface;
 using ESourcing.Sourcing.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +32,7 @@ namespace ESourcing.Sourcing
             services.AddControllers();
             services.Configure<SourcingDatabaseSettings>(Configuration.GetSection(nameof(SourcingDatabaseSettings)));
             services.AddSingleton<ISourcingDatabaseSettings>(sp => sp.GetRequiredService<IOptions<SourcingDatabaseSettings>>().Value);
+            services.AddTransient<ISourcingContext, SourcingContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
