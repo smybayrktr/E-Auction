@@ -24,3 +24,17 @@ services:
     volumes:
       - ${HOME}/ASP.NET/Https:/root/.aspnet/http/
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+  
+  esourcing.sourcing:
+    container_name: esourcingsourcing
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "SourcingDatabaseSettings:ConnectionStrings=mongodb://sourcingdb:27017"
+    depends_on:
+      - sourcingdb 
+    volumes:
+      - ${HOME}/ASP.NET/Http:/root/.aspnet/http/
+      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+    ports:
+      - "8001:80"
+      
