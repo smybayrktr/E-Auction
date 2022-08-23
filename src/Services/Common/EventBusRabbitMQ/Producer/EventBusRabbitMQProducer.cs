@@ -14,7 +14,8 @@ using System.Threading.Tasks;
 
 namespace EventBusRabbitMQ.Producer
 {
-    public class EventBusRabbitMQProducer
+    public class EventBusRabbitMQProducer 
+        //Bu sınıf rabbitMQ ya bağlanıp istenilen eventi istenilen queue ye publish edecek arayüz olması
     {
         //Producer üzerinden event yollayabilmek için RabbitMQ ya bağlanmamız lazım
         private readonly IRabbitMQPersisentConnection _persistentConnection;
