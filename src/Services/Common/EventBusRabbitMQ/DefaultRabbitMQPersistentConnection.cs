@@ -85,7 +85,7 @@ namespace EventBusRabbitMQ
             //koşullarda bekle ve tekrar dene.
             );
             policy.Execute(() => { 
-                _connection= _connectionFactory.CreateConnection();
+                _connection = _connectionFactory.CreateConnection();
             });
 
             if (IsConnected)
@@ -93,10 +93,8 @@ namespace EventBusRabbitMQ
                 _connection.ConnectionShutdown += OnConnectionShutDown;
                 _connection.CallbackException += OnCallbackException;
                 _connection.ConnectionBlocked += OnConnectionBlocked;
-
                 _logger.LogInformation("RabbitMQ Client acquired a persistent connection to '{Hostname}' and is subscribed to failure events",_connection);
                 return true;
-                            
             }
 
             else

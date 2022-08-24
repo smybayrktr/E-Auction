@@ -123,8 +123,33 @@ namespace ESourcing.Sourcing.Controllers
                 _logger.LogError(ex,"Error publishing integration event: {EventId} from {AppName}",eventMessage.Id, "Sourcing");
                 throw;
             }
+            return Accepted(eventMessage);
+        }
+
+
+
+        [HttpPost("TestEvent")]
+        public ActionResult<OrderCreateEvent> TestEvent()
+        {
+            OrderCreateEvent eventMessage = new OrderCreateEvent();
+            eventMessage.AuctionId = "dummy1";
+            eventMessage.ProductId = "dummy_product1";
+            eventMessage.Price = 10;
+            eventMessage.SellerUserName = "seller1@gmail.com";
+            eventMessage.Quantity = 100;
+            
+            try
+            {
+                _producer.Publish(EventBusConstants.OrderCreateQueue, eventMessage);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error publishing integration event: {EventId} from {AppName}", eventMessage.Id, "Sourcing");
+                throw;
+            }
             return Accepted();
         }
+
 
     }
 }

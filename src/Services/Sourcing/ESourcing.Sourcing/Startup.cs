@@ -60,16 +60,16 @@ namespace ESourcing.Sourcing
                 };
                 if (!string.IsNullOrWhiteSpace(Configuration["EventBus:UserName"]))
                 {
-                    factory.UserName = Configuration["EventBus: UserName"];
+                    factory.UserName = Configuration["EventBus:UserName"];
                 }
                 if (!string.IsNullOrWhiteSpace(Configuration["EventBus:Password"]))
-                {
-                    factory.Password = Configuration["EventBus: Password"];
+                { 
+                    factory.Password = Configuration["EventBus:Password"];
                 }
                 var retryCount = 5;
                 if (!string.IsNullOrWhiteSpace(Configuration["EventBus:RetryCount"]))
                 {
-                    retryCount = int.Parse(Configuration["EventBus: RetryCount"]);
+                    retryCount = int.Parse(Configuration["EventBus:RetryCount"]);
                 }
                 return new DefaultRabbitMQPersistentConnection(factory,retryCount,logger);
             });
